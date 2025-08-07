@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lucky Bakery - Panadería Artesanal</title>
+    <meta name="description" content="Panadería artesanal con los mejores sabores y ingredientes naturales">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preload" href="fonts/Qaligo-Regular.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="fonts/Steelfish-Bold.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="css/tienda.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <a href="#" class="logo">
+                    <div class="logo-container">
+                        <img src="logo/logo,.jpg" alt="Lucky Bakery Logo" class="logo-image">
+                    </div>
+                    Lucky Bakery
+                </a>
+                <ul class="nav-links">
+                    <li><a href="#inicio">Inicio</a></li>
+                    <li><a href="#menu">Menú</a></li>
+                    <li><a href="#nosotros">Nosotros</a></li>
+                    <li><a href="#pedidos">Pedidos</a></li>
+                </ul>
+                <button class="mobile-menu-btn" aria-label="Abrir menú">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <div class="mobile-menu">
+        <ul class="nav-links">
+            <li><a href="#inicio">Inicio</a></li>
+            <li><a href="#menu">Menú</a></li>
+            <li><a href="#nosotros">Nosotros</a></li>
+            <li><a href="#pedidos">Pedidos</a></li>
+        </ul>
+    </div>
+    <div class="overlay"></div>
+
+    <section id="inicio" class="hero">
+        <div class="hero-content">
+            <h1>Bienvenido a Lucky Bakery</h1>
+            <p>Donde cada pan recién horneado es una experiencia única</p>
+            <a href="#menu" class="btn btn-primary">Explora Nuestro Menú</a>
+        </div>
+    </section>
+
+    <section id="menu" class="section menu">
+        <div class="container">
+            <h2 class="section-title">Nuestro Menú</h2>
+            <div id="loading-menu" class="loading-message" style="display: none;">
+                <i class="fas fa-spinner fa-spin"></i> Cargando menú...
+            </div>
+            <div class="menu-grid">
+                <!-- Los productos se cargarán dinámicamente con JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <section id="nosotros" class="section">
+        <div class="container">
+            <div class="about">
+                <div class="about-img">
+                    <img src="https://images.unsplash.com/photo-1445116572660-236099ec97a0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" 
+                         alt="Interior de la panadería" loading="lazy">
+                </div>
+                <div class="about-content">
+                    <h2 class="section-title">Sobre Nosotros</h2>
+                    <p>En Lucky Bakery, nos apasiona crear productos horneados con ingredientes naturales y técnicas tradicionales. Cada pieza es elaborada con dedicación y amor.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="pedidos" class="section contact">
+        <div class="container">
+            <h2 class="section-title">Ordena tu pedido</h2>
+            <div class="contact-form">
+                <form id="pedidoForm">
+                    <div class="form-group">
+                        <label for="nombre">Nombre completo:</label>
+                        <input type="text" id="nombre" name="nombre" required placeholder="Ej: Mario Gonzales">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="telefono">Teléfono:</label>
+                        <input type="tel" id="telefono" name="telefono" required placeholder="Ej: 12345678">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="producto">Producto:</label>
+                        <select id="producto" name="producto" required>
+                            <option value="" disabled selected>Selecciona un producto</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="cantidad">Cantidad:</label>
+                        <input type="number" id="cantidad" name="cantidad" min="1" value="1" required>
+                    </div>
+                    
+                    <input type="hidden" id="precio_unitario" name="precio_unitario">
+                    <input type="hidden" id="total" name="total">
+                    
+                    <div class="form-group">
+                        <label for="mensaje">Instrucciones especiales:</label>
+                        <textarea id="mensaje" name="mensaje" placeholder="Instrucciones adicionales para tu pedido..."></textarea>
+                    </div>
+                    
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-primary">Enviar Pedido</button>
+                    </div>
+                </form>
+
+                <div class="order-confirmation" id="orderConfirmation" style="display: none;">
+                    <h3><i class="fas fa-check-circle"></i> ¡Pedido realizado con éxito!</h3>
+                    <p>Tu número de orden es: <strong id="orderNumberDisplay"></strong></p>
+                    
+                    <div class="order-summary" id="orderSummary">
+                        <!-- Resumen del pedido se insertará aquí -->
+                    </div>
+                    
+                    <p>Hemos recibido tu pedido y lo estamos preparando.</p>
+                    <p>Guarda este número para futuras referencias.</p>
+                    
+                    <button id="newOrderBtn" class="btn btn-primary" style="margin-top: 1rem;">
+                        <i class="fas fa-plus"></i> Hacer otro pedido
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; <span id="current-year"></span> Lucky Bakery. Todos los derechos reservados.</p>
+            <div class="social-links">
+                <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/tienda.js"></script>
+</body>
+</html>
